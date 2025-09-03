@@ -3,6 +3,11 @@ package com.example.recipeapplication.presentation.navigation
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Person
@@ -43,11 +48,11 @@ object Routes {
 }
 
 private val bottomItems = listOf(
-    BottomNavItem(Routes.MEAL_CATEGORY_SCREEN, "Meal Category", Icons.Outlined.Home),
-    BottomNavItem(Routes.MEAL_REGION_SCREEN, "Meal Region", Icons.Outlined.ShoppingCart),
-    BottomNavItem(Routes.SEARCH_SCREEN, "Search", Icons.Outlined.Search),
-    BottomNavItem(Routes.FAVORITES_SCREEN, "Favorites", Icons.Outlined.Favorite),
-    BottomNavItem(Routes.SETTINGS_SCREEN, "Settings", Icons.Outlined.Person),
+    BottomNavItem(Routes.MEAL_CATEGORY_SCREEN, "Meal Category", Icons.Outlined.Home, Icons.Filled.Home),
+    BottomNavItem(Routes.MEAL_REGION_SCREEN, "Meal Region", Icons.Outlined.ShoppingCart, Icons.Filled.ShoppingCart),
+    BottomNavItem(Routes.SEARCH_SCREEN, "Search", Icons.Outlined.Search, Icons.Filled.Search),
+    BottomNavItem(Routes.FAVORITES_SCREEN, "Favorites", Icons.Outlined.Favorite, Icons.Filled.Favorite),
+    BottomNavItem(Routes.SETTINGS_SCREEN, "Settings", Icons.Outlined.Person, Icons.Filled.Person),
 )
 
 @Composable

@@ -7,7 +7,7 @@ import com.example.recipeapplication.data.remote.MealsDTO.MealsDTO
 
 interface RecipeRepository {
     suspend fun searchRecipesByLetter(query: String): MealsDTO
-    suspend fun getMealsByCategory(query: String): MealCategory
+    suspend fun getMealsByCategory(query: String): MealsDTO
     suspend fun getMealsByRegion(query: String): MealCategory
     suspend fun getMealsById(query: String): Meal
     suspend fun getMealCategory(): MealCategory

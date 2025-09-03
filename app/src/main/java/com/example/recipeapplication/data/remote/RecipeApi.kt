@@ -18,7 +18,7 @@ interface RecipeApi {
     @GET("api/json/v1/1/filter.php")
     suspend fun getMealsByCategory(
         @Query("c") query: String,
-    ): MealCategory
+    ): MealsDTO
 
     @GET("api/json/v1/1/filter.php")
     suspend fun getMealsByRegion(

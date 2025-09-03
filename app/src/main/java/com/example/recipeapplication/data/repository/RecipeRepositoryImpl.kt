@@ -14,7 +14,7 @@ class RecipeRepositoryImpl(
         return api.searchByLetter(query)
     }
 
-    override suspend fun getMealsByCategory(query: String): MealCategory {
+    override suspend fun getMealsByCategory(query: String): MealsDTO {
         return api.getMealsByCategory(query)
     }
 
