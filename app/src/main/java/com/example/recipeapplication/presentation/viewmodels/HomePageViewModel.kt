@@ -2,18 +2,11 @@ package com.example.recipeapplication.presentation.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.recipeapplication.data.remote.MealsDTO.Meal
 import com.example.recipeapplication.data.remote.MealsDTO.MealsDTO
 import com.example.recipeapplication.domain.repository.RecipeRepository
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
 class HomePageViewModel(val recipeRepository: RecipeRepository): ViewModel() {
@@ -24,7 +17,7 @@ class HomePageViewModel(val recipeRepository: RecipeRepository): ViewModel() {
         flow {
             emit(SearchUiState.Loading)
             try {
-                val data = recipeRepository.searchRecipes("a")
+                val data = recipeRepository.searchRecipesByLetter("a")
                 println("ASDFASDFASDFASFD " + data)
                 emit(SearchUiState.Success(data))
             } catch (t: Throwable) {
