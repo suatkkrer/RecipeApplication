@@ -80,6 +80,10 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler.v272)
 
+    //Coil
+    implementation(libs.coil3.coil.compose)
+    implementation(libs.coil.network.okhttp)
+
     // Kotlin Coroutines + Flow
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
@@ -91,6 +95,8 @@ dependencies {
     // Glide (with Compose)
     implementation(libs.glide)
     implementation(libs.landscapist.glide)
+    implementation(libs.compose)
+    implementation(libs.androidx.compose.material3.material3)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
