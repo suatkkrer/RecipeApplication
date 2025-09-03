@@ -1,15 +1,13 @@
 package com.example.recipeapplication.di
 
-import androidx.room.Room
 import com.example.recipeapplication.data.remote.RecipeApi
+import com.example.recipeapplication.data.repository.RecipeRepositoryImpl
 import com.example.recipeapplication.domain.repository.RecipeRepository
-import com.example.recipeapplication.domain.repository.RecipeRepositoryImpl
 import com.example.recipeapplication.presentation.viewmodels.HomePageViewModel
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -49,7 +47,7 @@ val networkModule = module {
     single { moshi }
     single {
         Retrofit.Builder()
-            .baseUrl("https://www.themealdb.com/") // OK with trailing slash
+            .baseUrl("https://www.themealdb.com/")
             .client(get())
             .addConverterFactory(MoshiConverterFactory.create(get()))
             .build()

@@ -17,8 +17,7 @@ class HomePageViewModel(val recipeRepository: RecipeRepository): ViewModel() {
         flow {
             emit(SearchUiState.Loading)
             try {
-                val data = recipeRepository.searchRecipesByLetter("a")
-                println("ASDFASDFASDFASFD " + data)
+                val data = recipeRepository.searchRecipesByLetter(query)
                 emit(SearchUiState.Success(data))
             } catch (t: Throwable) {
                 emit(SearchUiState.Error(t))
