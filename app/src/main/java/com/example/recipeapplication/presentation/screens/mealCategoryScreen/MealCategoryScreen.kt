@@ -33,9 +33,10 @@ fun MealCategoryScreen(
                 contentPadding = PaddingValues(vertical = 16.dp),
                 verticalArrangement = Arrangement.spacedBy(24.dp)
             ) {
-                items(state.items) { meals ->
+                items(state.items) { mealsCategory ->
                     MealsList(
-                        meals = meals,
+                        mealsCategory = mealsCategory.category,
+                        meals = mealsCategory.meals,
                         modifier = Modifier.fillMaxWidth()
                     )
                 }

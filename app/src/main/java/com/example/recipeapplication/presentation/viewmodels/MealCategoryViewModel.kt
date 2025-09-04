@@ -2,7 +2,7 @@ package com.example.recipeapplication.presentation.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.recipeapplication.data.remote.MealsDTO.Meal
+import com.example.recipeapplication.domain.model.CategoryMeals
 import com.example.recipeapplication.domain.usecase.GetMealsByCategoryUseCase
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -26,6 +26,6 @@ class MealCategoryViewModel(val getMealsByCategoryUseCase: GetMealsByCategoryUse
 sealed interface MealCategoryUiState {
     data object Idle : MealCategoryUiState
     data object Loading : MealCategoryUiState
-    data class Success(val items: List<List<Meal>>) : MealCategoryUiState
+    data class Success(val items: List<CategoryMeals>) : MealCategoryUiState
     data class Error(val throwable: Throwable) : MealCategoryUiState
 }

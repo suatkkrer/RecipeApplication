@@ -19,11 +19,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import com.example.recipeapplication.data.remote.MealsDTO.Meal
+import com.example.recipeapplication.domain.model.MealDomain
 
 @Composable
 fun MealsCardUI(
-    meal: Meal,
+    meal: MealDomain,
     modifier: Modifier = Modifier,
     onClick: (() -> Unit)? = null
 ) {
@@ -36,8 +36,8 @@ fun MealsCardUI(
     ) {
         Column {
             AsyncImage(
-                model = meal.strMealThumb,
-                contentDescription = meal.strMeal,
+                model = meal.thumbnail,
+                contentDescription = meal.name,
                 modifier = Modifier
                     .fillMaxWidth()
                     .aspectRatio(16f / 9f),
@@ -48,14 +48,14 @@ fun MealsCardUI(
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)
             ) {
                 Text(
-                    text = meal.strMeal.orEmpty(),
+                    text = meal.name.orEmpty(),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.SemiBold,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis
                 )
 
-                meal.idMeal?.takeIf { it.isNotBlank() }?.let {
+                meal.id.takeIf { it.isNotBlank() }?.let {
                     Spacer(Modifier.height(4.dp))
                     Text(
                         text = it,
@@ -66,7 +66,7 @@ fun MealsCardUI(
                     )
                 }
 
-                meal.strInstructions?.takeIf { it.isNotBlank() }?.let {
+                meal.instructions?.takeIf { it.isNotBlank() }?.let {
                     Spacer(Modifier.height(8.dp))
                     Text(
                         text = it,
