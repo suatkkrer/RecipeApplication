@@ -20,11 +20,14 @@ class MealCategoryViewModel(val getMealsByCategoryUseCase: GetMealsByCategoryUse
             } catch (t: Throwable) {
                 emit(MealCategoryUiState.Error(t))
             }
-        }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), MealCategoryUiState.Idle)
+        }.stateIn(
+            viewModelScope,
+            SharingStarted.WhileSubscribed(5_000),
+            MealCategoryUiState.Loading
+        )
 }
 
 sealed interface MealCategoryUiState {
-    data object Idle : MealCategoryUiState
     data object Loading : MealCategoryUiState
     data class Success(val items: List<CategoryMeals>) : MealCategoryUiState
     data class Error(val throwable: Throwable) : MealCategoryUiState

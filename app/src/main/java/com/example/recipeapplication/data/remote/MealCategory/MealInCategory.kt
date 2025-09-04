@@ -1,5 +1,5 @@
 package com.example.recipeapplication.data.remote.MealCategory
 
-data class Meal(
+data class MealInCategory(
     val strCategory: String
 )

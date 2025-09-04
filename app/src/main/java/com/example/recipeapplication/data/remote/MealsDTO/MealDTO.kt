@@ -1,6 +1,6 @@
 package com.example.recipeapplication.data.remote.MealsDTO
 
-data class Meal(
+data class MealDTO(
     val dateModified: Any?,
     val idMeal: String?,
     val strArea: String?,

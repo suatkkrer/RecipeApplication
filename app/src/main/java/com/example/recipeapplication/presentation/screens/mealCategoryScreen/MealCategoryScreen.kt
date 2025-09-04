@@ -24,7 +24,6 @@ fun MealCategoryScreen(
 
     when(uiState) {
         is MealCategoryUiState.Error -> {}
-        MealCategoryUiState.Idle -> {}
         MealCategoryUiState.Loading -> {}
         is MealCategoryUiState.Success -> {
             val state = uiState as MealCategoryUiState.Success

@@ -4,7 +4,9 @@ import com.example.recipeapplication.data.remote.RecipeApi
 import com.example.recipeapplication.data.repository.RecipeRepositoryImpl
 import com.example.recipeapplication.domain.repository.RecipeRepository
 import com.example.recipeapplication.domain.usecase.GetMealsByCategoryUseCase
+import com.example.recipeapplication.domain.usecase.GetMealsByRegionUseCase
 import com.example.recipeapplication.presentation.viewmodels.MealCategoryViewModel
+import com.example.recipeapplication.presentation.viewmodels.MealRegionViewModel
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
@@ -27,7 +29,9 @@ val appModule = module {
 //    single { get<RecipeDatabase>().recipeDao() }
     single<RecipeRepository> { RecipeRepositoryImpl(get()) }
     single { GetMealsByCategoryUseCase(get<RecipeRepository>()) }
+    single { GetMealsByRegionUseCase(get<RecipeRepository>()) }
     viewModel { MealCategoryViewModel(get()) }
+    viewModel { MealRegionViewModel(get()) }
 }
 
 val networkModule = module {

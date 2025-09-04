@@ -1,10 +1,10 @@
 package com.example.recipeapplication.domain.mapper
 
-import com.example.recipeapplication.data.remote.MealsDTO.Meal
+import com.example.recipeapplication.data.remote.MealsDTO.MealDTO
 import com.example.recipeapplication.domain.model.Ingredient
 import com.example.recipeapplication.domain.model.MealDomain
 
-fun Meal.toDomain(): MealDomain {
+fun MealDTO.toDomain(): MealDomain {
     val ingredients = (1..20).mapNotNull { index ->
         val ingredient = this::class.members
             .firstOrNull { it.name == "strIngredient$index" }
