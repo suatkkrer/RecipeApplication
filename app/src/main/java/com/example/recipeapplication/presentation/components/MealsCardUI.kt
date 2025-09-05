@@ -2,10 +2,8 @@ package com.example.recipeapplication.presentation.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -48,33 +46,12 @@ fun MealsCardUI(
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)
             ) {
                 Text(
-                    text = meal.name.orEmpty(),
+                    text = meal.name,
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.SemiBold,
-                    maxLines = 2,
+                    maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
-
-                meal.id.takeIf { it.isNotBlank() }?.let {
-                    Spacer(Modifier.height(4.dp))
-                    Text(
-                        text = it,
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                }
-
-                meal.instructions?.takeIf { it.isNotBlank() }?.let {
-                    Spacer(Modifier.height(8.dp))
-                    Text(
-                        text = it,
-                        style = MaterialTheme.typography.bodySmall,
-                        maxLines = 4,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                }
             }
         }
     }
