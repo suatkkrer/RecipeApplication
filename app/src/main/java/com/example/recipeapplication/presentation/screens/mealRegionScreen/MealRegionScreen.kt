@@ -1,6 +1,5 @@
 package com.example.recipeapplication.presentation.screens.mealRegionScreen
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -29,8 +28,7 @@ fun MealRegionScreen(
             val state = uiState as MealRegionUiState.Success
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
-                contentPadding = PaddingValues(vertical = 16.dp),
-                verticalArrangement = Arrangement.spacedBy(24.dp)
+                contentPadding = PaddingValues(vertical = 8.dp),
             ) {
                 items(state.items) { mealsCategory ->
                     MealsList(

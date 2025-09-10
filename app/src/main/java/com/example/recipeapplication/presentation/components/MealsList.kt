@@ -1,6 +1,5 @@
 package com.example.recipeapplication.presentation.components
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.snapping.rememberSnapFlingBehavior
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -25,7 +24,6 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.recipeapplication.domain.model.MealDomain
-import com.example.recipeapplication.ui.theme.Purple80
 
 @Composable
 fun MealsList(
@@ -40,16 +38,11 @@ fun MealsList(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 12.dp)
     ) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(
-                    color = Purple80,
-                    shape = RoundedCornerShape(12.dp)
-                )
-                .padding(horizontal = 16.dp, vertical = 12.dp)
+                .padding(horizontal = 16.dp)
         ) {
             Text(
                 text = mealsCategory,
