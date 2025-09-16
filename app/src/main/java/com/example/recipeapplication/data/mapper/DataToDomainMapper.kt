@@ -1,8 +1,10 @@
-package com.example.recipeapplication.domain.mapper
+package com.example.recipeapplication.data.mapper
 
 import com.example.recipeapplication.data.remote.MealsDTO.MealDTO
+import com.example.recipeapplication.data.remote.MealsDTO.MealsDTO
 import com.example.recipeapplication.domain.model.Ingredient
 import com.example.recipeapplication.domain.model.MealDomain
+import com.example.recipeapplication.domain.model.MealsDomain
 
 fun MealDTO.toDomain(): MealDomain {
     val ingredients = (1..20).mapNotNull { index ->
@@ -32,5 +34,11 @@ fun MealDTO.toDomain(): MealDomain {
         youtubeUrl = strYoutube,
         sourceUrl = strSource,
         ingredients = ingredients
+    )
+}
+
+fun MealsDTO.toDomain(): MealsDomain {
+    return MealsDomain(
+        meals = meals.map { it.toDomain() }
     )
 }

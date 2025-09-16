@@ -1,6 +1,5 @@
 package com.example.recipeapplication.domain.usecase
 
-import com.example.recipeapplication.domain.mapper.toDomain
 import com.example.recipeapplication.domain.model.RegionMeals
 import com.example.recipeapplication.domain.repository.RecipeRepository
 import kotlinx.coroutines.async
@@ -14,7 +13,7 @@ class GetMealsByRegionUseCase(
         val categories = recipeRepository.getMealRegion()
         categories.meals.map { c ->
             async {
-                val meals = recipeRepository.getMealsByRegion(c.strArea).meals.map { it.toDomain() }
+                val meals = recipeRepository.getMealsByRegion(c.strArea).meals.map { it }
                 RegionMeals(region = c.strArea, meals = meals)
             }
         }.awaitAll()
