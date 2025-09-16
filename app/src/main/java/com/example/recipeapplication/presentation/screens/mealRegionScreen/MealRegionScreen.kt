@@ -10,6 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavHostController
 import com.example.recipeapplication.presentation.components.MealsList
 import com.example.recipeapplication.presentation.viewmodels.MealRegionUiState
 import com.example.recipeapplication.presentation.viewmodels.MealRegionViewModel
@@ -17,6 +18,7 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun MealRegionScreen(
+    navController: NavHostController,
     viewModel: MealRegionViewModel = koinViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -34,7 +36,9 @@ fun MealRegionScreen(
                     MealsList(
                         mealsCategory = mealsCategory.region,
                         meals = mealsCategory.meals,
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth(),
+                        onMealClick = { mealId -> viewModel.onItemSelected(mealId = mealId) },
+                        navController = navController
                     )
                 }
             }

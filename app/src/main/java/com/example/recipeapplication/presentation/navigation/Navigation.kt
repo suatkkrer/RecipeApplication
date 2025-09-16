@@ -13,22 +13,27 @@ import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.ShoppingCart
-import androidx.compose.material3.*
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.style.TextAlign
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.text.style.TextAlign
-import androidx.navigation.NavHostController
 import com.example.recipeapplication.presentation.screens.favoritesScreen.FavoritesScreen
 import com.example.recipeapplication.presentation.screens.mealCategoryScreen.MealCategoryScreen
 import com.example.recipeapplication.presentation.screens.mealRegionScreen.MealRegionScreen
+import com.example.recipeapplication.presentation.screens.productDetailScreen.ProductDetailScreen
 import com.example.recipeapplication.presentation.screens.searchScreen.SearchScreen
 import com.example.recipeapplication.presentation.screens.settingsScreen.SettingsScreen
 
@@ -45,6 +50,7 @@ object Routes {
     const val SEARCH_SCREEN = "searchScreen"
     const val FAVORITES_SCREEN = "favoritesScreen"
     const val SETTINGS_SCREEN = "settingScreen"
+    const val PRODUCT_DETAIL_SCREEN = "productDetailScreen"
 }
 
 private val bottomItems = listOf(
@@ -104,10 +110,11 @@ fun AppNavHost(
         startDestination = Routes.MEAL_CATEGORY_SCREEN,
         modifier = modifier.fillMaxSize()
     ) {
-        composable(Routes.MEAL_CATEGORY_SCREEN) { MealCategoryScreen() }
-        composable(Routes.MEAL_REGION_SCREEN) { MealRegionScreen() }
-        composable(Routes.SEARCH_SCREEN) { SearchScreen() }
-        composable(Routes.FAVORITES_SCREEN) { FavoritesScreen() }
-        composable(Routes.SETTINGS_SCREEN) { SettingsScreen() }
+        composable(Routes.MEAL_CATEGORY_SCREEN) { MealCategoryScreen(navController = navController) }
+        composable(Routes.MEAL_REGION_SCREEN) { MealRegionScreen(navController = navController) }
+        composable(Routes.SEARCH_SCREEN) { SearchScreen(navController = navController) }
+        composable(Routes.FAVORITES_SCREEN) { FavoritesScreen(navController = navController) }
+        composable(Routes.SETTINGS_SCREEN) { SettingsScreen(navController = navController) }
+        composable(Routes.PRODUCT_DETAIL_SCREEN) { ProductDetailScreen(navController = navController) }
     }
 }

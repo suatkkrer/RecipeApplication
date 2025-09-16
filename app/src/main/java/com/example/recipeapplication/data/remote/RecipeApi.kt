@@ -1,8 +1,8 @@
 package com.example.recipeapplication.data.remote
 
+import com.example.recipeapplication.data.remote.MealById.MealById
 import com.example.recipeapplication.data.remote.MealByRegion.MealsByRegion
 import com.example.recipeapplication.data.remote.MealCategory.MealCategory
-import com.example.recipeapplication.data.remote.MealsDTO.MealDTO
 import com.example.recipeapplication.data.remote.MealsDTO.MealsDTO
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -29,8 +29,8 @@ interface RecipeApi {
         @Query("a") query: String
     ): MealsDTO
 
-    @GET("api/json/v1/1/lookup.php?i=52772")
+    @GET("api/json/v1/1/lookup.php")
     suspend fun getMealsById(
-        @Query("i") query: String
-    ): MealDTO
+        @Query("i") id: String
+    ): MealById
 }

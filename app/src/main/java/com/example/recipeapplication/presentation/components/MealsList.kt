@@ -23,14 +23,17 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.recipeapplication.domain.model.MealDomain
+import com.example.recipeapplication.presentation.navigation.Routes
 
 @Composable
 fun MealsList(
     mealsCategory: String,
     meals: List<MealDomain>,
     modifier: Modifier = Modifier,
-    onMealClick: (MealDomain) -> Unit = {}
+    onMealClick: (String) -> Unit = {},
+    navController: NavController
 ) {
     val listState = rememberLazyListState()
     val fling = rememberSnapFlingBehavior(lazyListState = listState)
@@ -72,7 +75,10 @@ fun MealsList(
                         .width(200.dp)
                         .shadow(4.dp, RoundedCornerShape(16.dp))
                         .clip(RoundedCornerShape(16.dp)),
-                    onClick = { onMealClick(meal) }
+                    onClick = {
+                        onMealClick(meal.id)
+                        navController.navigate(Routes.PRODUCT_DETAIL_SCREEN)
+                    }
                 )
             }
         }
