@@ -2,7 +2,6 @@ package com.example.recipeapplication.presentation.screens.productDetailScreen
 
 import android.content.Intent
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -26,6 +25,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -37,7 +37,6 @@ import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import androidx.navigation.NavHostController
 import coil3.compose.AsyncImage
-import com.example.recipeapplication.data.remote.MealById.Meal
 import com.example.recipeapplication.presentation.viewmodels.ProductDetailViewModel
 import org.koin.androidx.compose.koinViewModel
 
@@ -54,7 +53,7 @@ fun ProductDetailScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(mealDetail?.strMeal ?: "Detail") },
+                title = { Text(mealDetail?.name ?: "Detail") },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
@@ -75,8 +74,8 @@ fun ProductDetailScreen(
             ) {
                 item {
                     AsyncImage(
-                        model = detail.strMealThumb,
-                        contentDescription = detail.strMeal,
+                        model = detail.thumbnail,
+                        contentDescription = detail.name,
                         modifier = Modifier
                             .fillMaxWidth()
                             .aspectRatio(16f / 9f),
@@ -85,20 +84,20 @@ fun ProductDetailScreen(
 
                     Column(modifier = Modifier.padding(16.dp)) {
                         Text(
-                            text = detail.strMeal ?: "",
+                            text = detail.name,
                             style = MaterialTheme.typography.headlineSmall,
                             fontWeight = FontWeight.Bold
                         )
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(
-                            text = "${detail.strCategory} • ${detail.strArea}",
+                            text = "${detail.category} • ${detail.area}",
                             style = MaterialTheme.typography.bodyMedium,
                             color = Color.Gray
                         )
                     }
                 }
 
-                detail.strYoutube
+                detail.youtubeUrl
                     ?.takeIf { it.isNotBlank() }
                     ?.let { youtube ->
                         item {
@@ -141,16 +140,22 @@ fun ProductDetailScreen(
                     )
                 }
 
-                val ingredients = getIngredients(detail)
-                items(ingredients) { (ingredient, measure) ->
+                items(detail.ingredients) { (ingredient, measure) ->
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(horizontal = 16.dp, vertical = 4.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween
+                            .padding(horizontal = 16.dp, vertical = 6.dp),
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text(text = ingredient, style = MaterialTheme.typography.bodyMedium)
-                        Text(text = measure, style = MaterialTheme.typography.bodyMedium)
+                        Text(
+                            "•",
+                            style = MaterialTheme.typography.bodyLarge,
+                            modifier = Modifier.padding(end = 8.dp)
+                        )
+                        Text(
+                            text = "$ingredient (${measure})",
+                            style = MaterialTheme.typography.bodyMedium
+                        )
                     }
                 }
 
@@ -164,7 +169,7 @@ fun ProductDetailScreen(
                 }
                 item {
                     Text(
-                        text = detail.strInstructions ?: "",
+                        text = detail.instructions ?: "",
                         style = MaterialTheme.typography.bodyMedium,
                         modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
                     )
@@ -172,37 +177,4 @@ fun ProductDetailScreen(
             }
         }
     }
-}
-
-fun getIngredients(meal: Meal): List<Pair<String, String>> {
-    val ingredients = mutableListOf<Pair<String, String>>()
-    val fields = listOf(
-        meal.strIngredient1 to meal.strMeasure1,
-        meal.strIngredient2 to meal.strMeasure2,
-        meal.strIngredient3 to meal.strMeasure3,
-        meal.strIngredient4 to meal.strMeasure4,
-        meal.strIngredient5 to meal.strMeasure5,
-        meal.strIngredient6 to meal.strMeasure6,
-        meal.strIngredient7 to meal.strMeasure7,
-        meal.strIngredient8 to meal.strMeasure8,
-        meal.strIngredient9 to meal.strMeasure9,
-        meal.strIngredient10 to meal.strMeasure10,
-        meal.strIngredient11 to meal.strMeasure11,
-        meal.strIngredient12 to meal.strMeasure12,
-        meal.strIngredient13 to meal.strMeasure13,
-        meal.strIngredient14 to meal.strMeasure14,
-        meal.strIngredient15 to meal.strMeasure15,
-        meal.strIngredient16 to meal.strMeasure16,
-        meal.strIngredient17 to meal.strMeasure17,
-        meal.strIngredient18 to meal.strMeasure18,
-        meal.strIngredient19 to meal.strMeasure19,
-        meal.strIngredient20 to meal.strMeasure20,
-    )
-
-    fields.forEach { (ingredient, measure) ->
-        if (!ingredient.isNullOrBlank() && ingredient.isNotEmpty()) {
-            ingredients.add(ingredient to (measure ?: ""))
-        }
-    }
-    return ingredients
 }

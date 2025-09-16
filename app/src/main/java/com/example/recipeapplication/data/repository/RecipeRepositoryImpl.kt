@@ -1,10 +1,9 @@
 package com.example.recipeapplication.data.repository
 
 import com.example.recipeapplication.data.mapper.toDomain
-import com.example.recipeapplication.data.remote.MealById.MealById
-import com.example.recipeapplication.data.remote.MealByRegion.MealsByRegion
-import com.example.recipeapplication.data.remote.MealCategory.MealCategory
 import com.example.recipeapplication.data.remote.RecipeApi
+import com.example.recipeapplication.domain.model.MealCategoryListDomain
+import com.example.recipeapplication.domain.model.MealsByRegionDomain
 import com.example.recipeapplication.domain.model.MealsDomain
 import com.example.recipeapplication.domain.repository.RecipeRepository
 
@@ -22,12 +21,14 @@ class RecipeRepositoryImpl(
         return dto.toDomain()
     }
 
-    override suspend fun getMealCategory(): MealCategory {
-        return api.getMealCategory()
+    override suspend fun getMealCategory(): MealCategoryListDomain {
+        val dto = api.getMealCategory()
+        return dto.toDomain()
     }
 
-    override suspend fun getMealRegion(): MealsByRegion {
-        return api.getMealsRegion()
+    override suspend fun getMealRegion(): MealsByRegionDomain {
+        val dto = api.getMealsRegion()
+        return dto.toDomain()
     }
 
     override suspend fun getMealsByRegion(query: String): MealsDomain {
@@ -35,7 +36,8 @@ class RecipeRepositoryImpl(
         return dto.toDomain()
     }
 
-    override suspend fun getMealsById(query: String): MealById {
-        return api.getMealsById(query)
+    override suspend fun getMealsById(query: String): MealsDomain {
+        val dto = api.getMealsById(query)
+        return dto.toDomain()
     }
 }

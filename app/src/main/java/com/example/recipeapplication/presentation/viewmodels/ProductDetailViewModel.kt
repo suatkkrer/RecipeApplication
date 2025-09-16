@@ -2,7 +2,7 @@ package com.example.recipeapplication.presentation.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.recipeapplication.data.remote.MealById.MealById
+import com.example.recipeapplication.domain.model.MealsDomain
 import com.example.recipeapplication.domain.repository.RecipeRepository
 import com.example.recipeapplication.domain.usecase.SelectItemUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,8 +14,8 @@ class ProductDetailViewModel(
     private val repository: RecipeRepository
 ) : ViewModel() {
 
-    private val _meal = MutableStateFlow<MealById?>(null)
-    val meal: StateFlow<MealById?> = _meal
+    private val _meal = MutableStateFlow<MealsDomain?>(null)
+    val meal: StateFlow<MealsDomain?> = _meal
 
     init {
         viewModelScope.launch {

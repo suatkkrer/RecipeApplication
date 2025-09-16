@@ -11,11 +11,11 @@ class GetMealsByCategoryUseCase(
 ) {
     suspend operator fun invoke(): List<CategoryMeals> = coroutineScope {
         val categories = recipeRepository.getMealCategory()
-        categories.meals.map { c ->
+        categories.mealCategoryList.map { c ->
             async {
                 val meals =
-                    recipeRepository.getMealsByCategory(c.strCategory).meals.map { it }
-                CategoryMeals(category = c.strCategory, meals = meals)
+                    recipeRepository.getMealsByCategory(c.categoryName).meals.map { it }
+                CategoryMeals(category = c.categoryName, meals = meals)
             }
         }.awaitAll()
     }
